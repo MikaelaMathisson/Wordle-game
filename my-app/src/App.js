@@ -4,6 +4,7 @@ import Keyboard from "./components/Keyboard";
 import { createContext, useEffect, useState } from "react";
 import { boardDefault, generateWordSet } from "./Words";
 import GameOver from "./components/GameOver";
+import Nav from "./components/Nav";
 export const AppContext = createContext();
 
 export default function App() {
@@ -65,9 +66,7 @@ export default function App() {
   };
   return (
     <div className="App">
-      <nav>
-        <h1>Wordle</h1>
-      </nav>
+      <Nav />
       <AppContext.Provider
         value={{
           board,
