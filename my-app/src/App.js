@@ -8,6 +8,11 @@ import Nav from "./components/Nav";
 import HighscoreForm from "./components/HighscoreForm"; // Import the HighscoreForm component
 export const AppContext = createContext();
 
+const defaultSettings = {
+  wordLength: "", // Default word length
+  allowRepetition: false, // Default: Do not allow repetition of letters
+};
+
 export default function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
@@ -21,14 +26,17 @@ export default function App() {
 
   const [startTime, setStartTime] = useState(null); // Track start time
   const [endTime, setEndTime] = useState(null); // Track end time
+  const [settings, setSettings] = useState(defaultSettings); // State for settings
 
   useEffect(() => {
-    generateWordSet().then((words) => {
-      setWordSet(words.wordSet);
-      setCorrectWord(words.todaysWord);
-      setStartTime(new Date()); // Set start time when the game starts
-    });
-  }, []);
+    generateWordSet(settings.wordLength, settings.allowRepetition).then(
+      (words) => {
+        setWordSet(words.wordSet);
+        setCorrectWord(words.todaysWord);
+        setStartTime(new Date()); // Set start time when the game starts
+      }
+    );
+  }, [settings]);
 
   useEffect(() => {
     if (gameOver.gameOver) {
@@ -51,17 +59,17 @@ export default function App() {
       name: formData.name,
       timeSpent,
       guessesMade,
-      wordLength: formData.wordLength,
-      uniqueLetters: formData.uniqueLetters,
+      wordLength: settings.wordLength,
+      allowRepetition: settings.allowRepetition,
       correctWord,
     };
 
-    // Here, you can send highscoreData to your backend for storage
+    //send highscoreData to your backend for storage
     console.log("Highscore submitted:", highscoreData);
   };
 
   const onSelectLetter = (keyVal) => {
-    if (currAttempt.letterPos > 4) return;
+    if (currAttempt.letterPos > settings.wordLength - 1) return;
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
     setBoard(newBoard);
@@ -77,10 +85,10 @@ export default function App() {
   };
 
   const onEnter = () => {
-    if (currAttempt.letterPos !== 5) return;
+    if (currAttempt.letterPos !== settings.wordLength) return;
 
     let currWord = "";
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < settings.wordLength; i++) {
       currWord += board[currAttempt.attempt][i];
     }
 
@@ -99,6 +107,25 @@ export default function App() {
     if (currAttempt.attempt === 5) {
       setGameOver({ gameOver: true, guessedWord: false });
     }
+  };
+
+  const handleSettingsChange = (updatedSettings) => {
+    console.log("Updated settings:", updatedSettings);
+
+    // Validate the word length
+    const newWordLength = parseInt(updatedSettings.wordLength);
+    if (
+      isNaN(newWordLength) || // Check if it's not a number
+      newWordLength < 3 || // Check if it's less than 3
+      newWordLength > 5 // Check if it's greater than 5
+    ) {
+      console.log(
+        "Invalid word length. Please enter a number between 3 and 5."
+      );
+      return; // Don't update settings if the input is invalid
+    }
+
+    setSettings(updatedSettings);
   };
 
   return (
@@ -122,6 +149,39 @@ export default function App() {
         }}
       >
         <div className="game">
+          <div>
+            <label>
+              Word Length:
+              <input
+                type="number"
+                value={settings.wordLength}
+                onChange={(e) => {
+                  const newValue = parseInt(e.target.value);
+                  console.log("Word length changed:", newValue);
+                  if (!isNaN(newValue)) {
+                    handleSettingsChange({
+                      ...settings,
+                      wordLength: newValue,
+                    });
+                  }
+                }}
+              />
+            </label>
+            <label>
+              Allow Repetition:
+              <input
+                type="checkbox"
+                checked={settings.allowRepetition}
+                onChange={(e) => {
+                  console.log("Allow repetition changed:", e.target.checked);
+                  handleSettingsChange({
+                    ...settings,
+                    allowRepetition: e.target.checked,
+                  });
+                }}
+              />
+            </label>
+          </div>
           <Board />
           {gameOver.gameOver ? <GameOver /> : <Keyboard />}
           {gameOver.gameOver && (
