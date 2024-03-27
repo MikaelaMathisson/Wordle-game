@@ -23,12 +23,7 @@ function Letter({ letterPos, attemptVal }) {
     }
   }, [letter, correct, almost, setDisabledLetters]);
 
-  return (
-    <div className="letter" id={letterState}>
-      {" "}
-      {letter}{" "}
-    </div>
-  );
+  return <div className={`letter ${letterState}`}>{letter}</div>;
 }
 
 export default Letter;
