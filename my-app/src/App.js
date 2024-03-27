@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import { boardDefault, generateWordSet } from "./Words";
 import GameOver from "./components/GameOver";
 import Nav from "./components/Nav";
+import HighscoreForm from "./components/HighscoreForm"; // Import the HighscoreForm component
 export const AppContext = createContext();
 
 export default function App() {
@@ -18,12 +19,46 @@ export default function App() {
     guessedWord: false,
   });
 
+  const [startTime, setStartTime] = useState(null); // Track start time
+  const [endTime, setEndTime] = useState(null); // Track end time
+
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
       setCorrectWord(words.todaysWord);
+      setStartTime(new Date()); // Set start time when the game starts
     });
   }, []);
+
+  useEffect(() => {
+    if (gameOver.gameOver) {
+      setEndTime(new Date()); // Set end time when the game ends
+    }
+  }, [gameOver]);
+
+  const getTimeSpent = () => {
+    if (startTime && endTime) {
+      const timeDifference = endTime - startTime;
+      // Convert milliseconds to seconds
+      return Math.floor(timeDifference / 1000);
+    }
+    return 0;
+  };
+  const handleHighscoreSubmission = (formData) => {
+    const timeSpent = getTimeSpent();
+    const guessesMade = currAttempt.attempt; // Calculate guesses made based on the number of attempts
+    const highscoreData = {
+      name: formData.name,
+      timeSpent,
+      guessesMade,
+      wordLength: formData.wordLength,
+      uniqueLetters: formData.uniqueLetters,
+      correctWord,
+    };
+
+    // Here, you can send highscoreData to your backend for storage
+    console.log("Highscore submitted:", highscoreData);
+  };
 
   const onSelectLetter = (keyVal) => {
     if (currAttempt.letterPos > 4) return;
@@ -57,6 +92,7 @@ export default function App() {
 
     if (currWord === correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
+      handleHighscoreSubmission(); // Call the function to submit highscore
       return;
     }
 
@@ -64,6 +100,7 @@ export default function App() {
       setGameOver({ gameOver: true, guessedWord: false });
     }
   };
+
   return (
     <div className="App">
       <Nav />
@@ -81,11 +118,17 @@ export default function App() {
           disabledLetters,
           setGameOver,
           gameOver,
+          getTimeSpent,
         }}
       >
         <div className="game">
           <Board />
           {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+          {gameOver.gameOver && (
+            <HighscoreForm onSubmit={handleHighscoreSubmission} />
+          )}{" "}
+          {/* Render HighscoreForm component when game is over */}
+          <p>Time spent playing: {getTimeSpent()} seconds</p>
         </div>
       </AppContext.Provider>
     </div>
