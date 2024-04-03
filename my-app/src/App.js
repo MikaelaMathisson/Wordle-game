@@ -5,7 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import { boardDefault, generateWordSet } from "./Words";
 import GameOver from "./components/GameOver";
 import Nav from "./components/Nav";
-import HighscoreForm from "./components/HighscoreForm"; // Import the HighscoreForm component
+import HighscoreForm from "./components/HighscoreForm";
 export const AppContext = createContext();
 
 const defaultSettings = {
@@ -64,7 +64,7 @@ export default function App() {
       correctWord,
     };
 
-    //send highscoreData to your backend for storage
+    //FIXA: SEND highscoreData to backend
     console.log("Highscore submitted:", highscoreData);
   };
 
@@ -100,7 +100,7 @@ export default function App() {
 
     if (currWord === correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
-      handleHighscoreSubmission(); // Call the function to submit highscore
+      handleHighscoreSubmission(); // Function to submit highscore
       return;
     }
 
