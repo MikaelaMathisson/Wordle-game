@@ -52,7 +52,7 @@ export default function App() {
     }
     return 0;
   };
-  const handleHighscoreSubmission = (formData) => {
+  const handleHighscoreSubmission = async (formData) => {
     const timeSpent = getTimeSpent();
     const guessesMade = currAttempt.attempt; // Calculate guesses made based on the number of attempts
     const highscoreData = {
@@ -63,7 +63,15 @@ export default function App() {
       allowRepetition: settings.allowRepetition,
       correctWord,
     };
-
+    // SKA SKICKAS HÄR TILL server/server.js filen som sedan skickar till mongodb
+    // databas och sedan hämtar alla highscores form mongodb och  visar på highscore listan
+    await fetch("http://localhost:5080/api/highscores", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(highscoreData),
+    });
     //FIXA: SEND highscoreData to backend
     console.log("Highscore submitted:", highscoreData);
   };
