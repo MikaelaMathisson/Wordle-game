@@ -1,8 +1,6 @@
 const express = require("express");
 const path = require("path");
-const mongoose = require("mongoose");
 const router = express.Router();
-const HighscoreModel = require("../server/mongo");
 
 const app = express();
 const PORT = 5080;
