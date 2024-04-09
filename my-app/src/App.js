@@ -7,6 +7,8 @@ import GameOver from "./components/GameOver";
 import Nav from "./components/Nav";
 import HighscoreForm from "./components/HighscoreForm";
 export const AppContext = createContext();
+import { About } from "./pages/About";
+import { Highscore } from "./pages/Highscores";
 
 const defaultSettings = {
   wordLength: "", // Default word length
@@ -138,7 +140,15 @@ export default function App() {
 
   return (
     <div className="App">
-      <Nav />
+      <Router>
+        <div>
+          <Nav />
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/highscores" element={<Highscore />} />
+          </Routes>
+        </div>
+      </Router>
       <AppContext.Provider
         value={{
           board,
