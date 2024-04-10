@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-function About() {
+export function About() {
   const location = useLocation();
 
   return (
@@ -30,5 +30,3 @@ function About() {
     </div>
   );
 }
-
-export default About;
