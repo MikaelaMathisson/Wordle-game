@@ -1,4 +1,7 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { About } from "./pages/About";
+import { Highscore } from "./pages/Highscores";
 import Board from "./components/Board";
 import Keyboard from "./components/Keyboard";
 import { createContext, useEffect, useState } from "react";
@@ -7,8 +10,6 @@ import GameOver from "./components/GameOver";
 import Nav from "./components/Nav";
 import HighscoreForm from "./components/HighscoreForm";
 export const AppContext = createContext();
-import { About } from "./pages/About";
-import { Highscore } from "./pages/Highscores";
 
 const defaultSettings = {
   wordLength: "", // Default word length
@@ -74,7 +75,6 @@ export default function App() {
       },
       body: JSON.stringify(highscoreData),
     });
-    //FIXA: SEND highscoreData to backend
     console.log("Highscore submitted:", highscoreData);
   };
 
@@ -144,6 +144,7 @@ export default function App() {
         <div>
           <Nav />
           <Routes>
+            <Route path="localhost:3000" element={<App />} />
             <Route path="/about" element={<About />} />
             <Route path="/highscores" element={<Highscore />} />
           </Routes>
