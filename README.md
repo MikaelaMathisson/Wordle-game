@@ -1,5 +1,5 @@
 How to start up server:
 
-cd server
-npm install
-npm start
+1. cd server
+2. npm install
+3. npm start
