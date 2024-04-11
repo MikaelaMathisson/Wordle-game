@@ -1,0 +1,79 @@
+/* custom.css */
+
+/* Styles for the highscore page */
+.App {
+  text-align: center;
+  background-color: #121212;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-title {
+  font-size: 2rem;
+}
+
+.highscores {
+  list-style: none;
+  padding: 0;
+}
+
+.highscore {
+  margin-bottom: 10px;
+}
+
+/* Styles for the about page */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+ul {
+  list-style-type: none; /* Remove default list style */
+}
+li {
+  margin-bottom: 10px;
+  border: 1px solid #ccc; /* Add border */
+  padding: 10px; /* Add padding */
+}
+.container p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.container a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+.highscores-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.highscore-item {
+  background-color: black;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.highscore-name {
+  font-weight: bold;
+}
+
+.highscore-time,
+.highscore-guesses,
+.highscore-wordlength,
+.highscore-allowrepetition,
+.highscore-correctword {
+  font-style: italic;
+}

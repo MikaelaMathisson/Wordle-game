@@ -1,6 +1,7 @@
 {
+  "proxy": "https://localhost:5080",
   "dependencies": {
     "express": "^4.19.1"
   }
-
+  
 }

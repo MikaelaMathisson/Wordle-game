@@ -66,16 +66,24 @@ export default function App() {
       allowRepetition: settings.allowRepetition,
       correctWord,
     };
-    // SKA SKICKAS HÄR TILL server/server.js filen som sedan skickar till mongodb
-    // databas och sedan hämtar alla highscores form mongodb och  visar på highscore listan
-    await fetch("/api/highscores", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(highscoreData),
-    });
-    console.log("Highscore submitted:", highscoreData);
+
+    try {
+      const response = await fetch("http://localhost:5080/api/highscores", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(highscoreData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit highscore");
+      }
+
+      console.log("Highscore submitted:", highscoreData);
+    } catch (error) {
+      console.error("Error submitting highscore:", error);
+    }
   };
 
   const onSelectLetter = (keyVal) => {

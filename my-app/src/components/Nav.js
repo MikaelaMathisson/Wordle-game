@@ -10,7 +10,7 @@ function Navbar() {
           <a href="/">Play Wordle</a>
         </li>
         <li>
-          <a href="/about">Information</a>
+          <a href="/about">About</a>
         </li>
         <li>
           <a href="/highscores">Highscores</a>

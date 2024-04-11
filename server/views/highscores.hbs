@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highscores</title>
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body class="App">
+    <div class="highscores-container">
+        <h1>Highscore List</h1>
+        <ul class="highscores-list">
+            {{#each highscores}}
+                <li class="highscore-item">
+                    <span class="highscore-name">Name: {{this.name}}</span><br>
+                    <span class="highscore-time">Time Spent: {{this.timeSpent}}</span><br>
+                    <span class="highscore-guesses">Guesses Made: {{this.guessesMade}}</span><br>
+                    <span class="highscore-wordlength">Word Length: {{this.wordLength}}</span><br>
+                    <span class="highscore-allowrepetition">Allow Repetition: {{this.allowRepetition}}</span><br>
+                    <span class="highscore-correctword">Correct Word: {{this.correctWord}}</span><br>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</body>
+</html>
