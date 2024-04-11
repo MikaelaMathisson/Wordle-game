@@ -68,8 +68,8 @@ export default function App() {
     };
     // SKA SKICKAS HÄR TILL server/server.js filen som sedan skickar till mongodb
     // databas och sedan hämtar alla highscores form mongodb och  visar på highscore listan
-    await fetch("http://localhost:5080/api/highscores", {
-      method: "post",
+    await fetch("/api/highscores", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
