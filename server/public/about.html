@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Wordle</title>
     <link rel="stylesheet" href="custom.css" />
     <!-- Link to your custom CSS file -->
-  </head>
-  <body class="App">
+</head>
+<body class="App">
     <nav>
-      <h1>About Wordle</h1>
+        <h1>About this Wordle project</h1>
     </nav>
     <div class="container">
-      <p>
-        Wordle is a word puzzle game where players try to guess a secret
-        five-letter word. Each guess is evaluated based on correctness and
-        position, with feedback provided to help players deduce the correct
-        word.
-      </p>
-      <p>
-        The game consists of a five-letter word chosen randomly from a
-        predefined set of words. Players make guesses, and the game provides
-        feedback after each attempt, indicating if letters are correct and/or in
-        the right position.
-      </p>
-      <p>
-        Wordle is a fun and challenging game that tests players' vocabulary and
-        deduction skills. It's a great way to pass the time while also
-        exercising your brain!
-      </p>
-      <p><a href="/" class="text-blue-500">Back to Home</a></p>
+        <h3>Project Summary</h3>
+        <p>
+            This project aimed to develop a Wordle-inspired game with a highscore
+            list and an "about" page. It is a full-stack application with three main
+            pages: a homepage for playing the game, a static information page about
+            the project, and a server-rendered highscore list.
+        </p>
+        <h3>Game Development:</h3>
+        <p>
+            The game was built using React for the frontend and Node.js with Express
+            for the backend. It follows the rules defined in the course's initial
+            assignment, where players guess a randomly selected word, with feedback
+            provided based on correctness and position. The backend API handles the
+            game logic and word selection, ensuring a seamless gaming experience.
+        </p>
+
+        <h3>Highscore List:</h3>
+        <p>
+            A highscore list, stored persistently in a database, showcases the top
+            performers. Users can submit their scores, including their name, time
+            taken, number of guesses, and word settings. The highscore list is
+            server-rendered, providing an efficient way to track and compare player
+            performance.
+        </p>
+        <h3>About Page:</h3>
+        <p>
+            An informative static page provides an overview of the project,
+            detailing its purpose, features, and technologies used.
+        </p>
+        <p>
+            <h3>Technologies and Tools Used:</h3>
+            <ul>
+                <li>Node.js</li>
+                <li>Express.js</li>
+                <li>React</li>
+                <li>MongoDB</li>
+                <li>Handlebars</li>
+                <li>HTML/CSS</li>
+                <li>JavaScript</li>
+                <li>Tailwind CSS</li>
+                <li>GitHub</li>
+                <li>RESTful API</li>
+                <li>Heroku</li>
+                <li>Postman</li>
+                <li>Visual Studio Code</li>
+            </ul>
+        </p>
+        <a href="/">Back to Home</a>
     </div>
-  </body>
+</body>
 </html>

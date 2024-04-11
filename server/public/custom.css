@@ -77,3 +77,7 @@ li {
 .highscore-correctword {
   font-style: italic;
 }
+.back-to-home-btn {
+  color: blue;
+  text-decoration: none;
+}

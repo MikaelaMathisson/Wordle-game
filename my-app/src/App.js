@@ -31,6 +31,13 @@ export default function App() {
   const [endTime, setEndTime] = useState(null); // Track end time
   const [settings, setSettings] = useState(defaultSettings); // State for settings
 
+  // Function to restart the game
+  const restartGame = () => {
+    // Reset the game state
+    setGameOver({ gameOver: false });
+    setSettings(defaultSettings);
+  };
+
   useEffect(() => {
     generateWordSet(settings.wordLength, settings.allowRepetition).then(
       (words) => {
@@ -217,6 +224,11 @@ export default function App() {
           {/* Render HighscoreForm component when game is over */}
           <p>Time spent playing: {getTimeSpent()} seconds</p>
         </div>
+
+        {/* Restart game button */}
+        {gameOver.gameOver && (
+          <button onClick={restartGame}>Restart Game</button>
+        )}
       </AppContext.Provider>
     </div>
   );
