@@ -98,11 +98,11 @@ nav h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#correct {
+.letter.correct {
   background-color: #528d4e;
 }
 
-#almost {
+.letter.almost {
   background-color: #b49f39;
 }
 

@@ -21,4 +21,4 @@ function algorithmA(guess, correctWord) {
   });
 }
 
-module.exports = algorithmA;
+export default algorithmA;
