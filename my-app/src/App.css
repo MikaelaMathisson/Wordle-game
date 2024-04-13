@@ -156,6 +156,7 @@ nav h1 {
 #big {
   width: 100px;
 }
+
 #disabled {
-  background-color: #3a393c;
+  background-color: red;
 }
