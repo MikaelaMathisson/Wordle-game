@@ -106,7 +106,7 @@ nav h1 {
   background-color: #b49f39;
 }
 
-#error {
+.letter.error {
   background-color: red;
 }
 
